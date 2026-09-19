@@ -77,6 +77,10 @@ export default function PostDetail() {
   const handleAddComment = async (e) => {
     e.preventDefault();
     if (!commentText.trim()) return;
+    if (!user) {
+      toast.error('Please sign in to add comments.');
+      return;
+    }
 
     const currentUserId = user?.id || user?._id;
     const newComment = {
