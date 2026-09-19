@@ -15,7 +15,12 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = env('SECRET_KEY', default='django-insecure-greenroots-secret-key-change-in-production')
 DEBUG = env.bool('DEBUG', default=True)
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
+    'localhost',
+    '127.0.0.1',
+    '.onrender.com',
+    'greenroot-vcew.onrender.com',
+])
 
 # Custom User Model (Must be set before initial migration)
 AUTH_USER_MODEL = 'accounts.User'
@@ -139,6 +144,7 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS', default=[
     'http://localhost:5173',
     'http://127.0.0.1:5173',
+    'https://greenroot-nine.vercel.app',
 ])
 CORS_ALLOW_CREDENTIALS = True
 
@@ -147,6 +153,8 @@ CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
     'http://127.0.0.1:5173',
     'http://localhost:8000',
     'http://127.0.0.1:8000',
+    'https://greenroot-nine.vercel.app',
+    'https://greenroot-vcew.onrender.com',
 ])
 
 SESSION_COOKIE_SAMESITE = 'Lax'
@@ -197,7 +205,7 @@ if _cloud_configured:
     )
 
 # Google OAuth Configuration
-CLIENT_URL = env('CLIENT_URL', default='http://localhost:5173')
+CLIENT_URL = env('CLIENT_URL', default='https://greenroot-nine.vercel.app')
 GOOGLE_CLIENT_ID = env('GOOGLE_CLIENT_ID', default='')
 GOOGLE_CLIENT_SECRET = env('GOOGLE_CLIENT_SECRET', default='')
-GOOGLE_CALLBACK_URL = env('GOOGLE_CALLBACK_URL', default='http://localhost:8000/api/auth/google/callback/')
+GOOGLE_CALLBACK_URL = env('GOOGLE_CALLBACK_URL', default='https://greenroot-vcew.onrender.com/api/auth/google/callback/')
